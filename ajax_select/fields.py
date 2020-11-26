@@ -19,12 +19,24 @@ as_default_help = 'Enter text to search.'
 
 
 def _media(self):
-    js = ['admin/js/jquery.init.js']
+    # Get Django major version as integer
+    d_version = int(get_version().split('.')[0])
+
+    if d_version == 3:
+        js = ['https://code.jquery.com/jquery-3.5.1.min.js']
+
+    js.append('admin/js/jquery.init.js')
 
     # Unless AJAX_SELECT_BOOTSTRAP == False
     # then load include bootstrap which will load jquery and jquery ui + default css as needed
     if getattr(settings, "AJAX_SELECT_BOOTSTRAP", True):
         js.append('ajax_select/js/bootstrap.js')
+    elif d_version == 3:
+        js.append('ajax_select/js/bootstrap.js')
+
+    # For Django 3 add RelatedObjectLookups.js to load
+    if d_version == 3:
+        js.append('admin/js/admin/RelatedObjectLookups.js')
 
     js.append('ajax_select/js/ajax_select.js')
 
