@@ -25,7 +25,7 @@ def _media(self):
 
     # Add jQuery
     if d_version == 3:
-        js = ['https://code.jquery.com/jquery-3.5.1.min.js']
+        js.append('https://code.jquery.com/jquery-3.5.1.min.js')
 
     js.append('admin/js/jquery.init.js')
 
