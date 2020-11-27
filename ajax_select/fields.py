@@ -1,6 +1,6 @@
 import json
 
-from django import forms
+from django import forms, get_version
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 from django.db.models import Model
@@ -19,9 +19,11 @@ as_default_help = 'Enter text to search.'
 
 
 def _media(self):
+    js = []
     # Get Django major version as integer
     d_version = int(get_version().split('.')[0])
 
+    # Add jQuery
     if d_version == 3:
         js = ['https://code.jquery.com/jquery-3.5.1.min.js']
 
