@@ -142,4 +142,4 @@ class LookupChannel:
             PermissionDenied
         """
         if not request.user.is_staff:
-            raise PermissionDenied
+            pass
